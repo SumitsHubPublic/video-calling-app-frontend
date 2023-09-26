@@ -4,9 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { SocketContext } from "../SocketContext";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   video: {
-    width: "550px",
+    width: "400px",
+    margin: "0 auto",
     [theme.breakpoints.down("xs")]: {
       width: "300px",
     },
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     border: "2px solid black",
     margin: "10px",
+    borderRadius: "8px",
   },
 }));
 
@@ -30,13 +32,11 @@ const VideoPlayer = () => {
     useContext(SocketContext);
   return (
     <Grid container className={classes.gridContainer}>
-      {/* Out own video */}
-
       {stream && (
         <Paper className={classes.paper}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6} md={6}>
             <Typography variant="h5" gutterBottom>
-              {name || "Name"}
+              {name || "Me"}
             </Typography>
             <video
               playsInline
@@ -51,7 +51,7 @@ const VideoPlayer = () => {
       {/* Other user's video */}
       {callAccepted && !callEnded && (
         <Paper className={classes.paper}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={6} md={6} lg={6} sm={6}>
             <Typography variant="h5" gutterBottom>
               {call.name || "Name"}
             </Typography>
